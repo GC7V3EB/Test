@@ -17,7 +17,7 @@
 |015|X|Z|J|4|V|3|F|R|B|O|E|D|Z|O|C|X|C|3|H|J|6|L|4|4|F|4|
 |016|9|N|5|9|V|G|K|5|U|D|V|C|M|T|Y|M|E|D|N|J|M|8|X|J|Z|O|
 |017|7|2|J|0|B|1|A|A|F|7|B|P|4|5|I|Q|2|5|P|H|B|X|J|S|N|8|
-|018|W|2|3|R|Z|4|G|K|K|T|F|5|Q|A|F|V|G|1|9|F|B|4|5|D|H|7|
+|018|W|2|3|R|Z|4|G|K|K|T|F|5|Q|A|F|V||1|9|F|B|4|5|D|H|7|
 |019|J|4|1|M|F|4|7|C|K|W|8|3|6|6|T|9|V|S|E|6|E|I|W|6|8|4|
 |020|X|Z|7|3|F|3|P|R|J|D|H|K|4|H|P|I|X|X|T|Z|X|M|L|U|3|E|
 |021|Y|H|R|Y|K|5|B|J|O|9|M|G|I|W|3|P|7|F|J|S|C|W|E|6|Y|U|
