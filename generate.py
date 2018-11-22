@@ -1,9 +1,9 @@
 import os
-import bcrypt
 import git
 import datetime as dt
 import uuid
 import random
+import sys
 
 
 def createHeader():
@@ -47,7 +47,27 @@ def add_to_content(content, numbers):
     return content
 
 
-def run():
+def hide(numbers, args):
+    rows = list()
+    while len(rows) < len(args):
+        r = random.randint(0, len(numbers))
+        if r in rows:
+            continue
+        rows.append(r)
+
+    for idx, i in enumerate(rows):
+        secret = args[idx]
+        row = numbers[i]
+
+        index = random.randint(0, len(row) - len(secret))
+        for x, y in enumerate(range(index, index + len(secret))):
+            numbers[i][y] = ord(secret[x])
+
+
+def run(argv):
+    maxCheckins = 1
+    hideMeInCheckin = random.randint(min(10, maxCheckins - 1), max(maxCheckins - 1, maxCheckins - 2))
+
     header = createHeader()
     numbers = createContent()
 
@@ -57,9 +77,13 @@ def run():
 
     previousNumber, newNumber = None, None
 
-    for i in range(0, 1):
+    for i in range(0, maxCheckins):
         changeLine = random.randint(0, len(numbers))
         changeColumn = random.randint(0, len(numbers[changeLine]))
+
+        if i == hideMeInCheckin:
+            hide(numbers, argv)
+            print('hidden')
 
         content = ''
         content = add_to_content(content, numbers)
@@ -89,4 +113,4 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    run(sys.argv[1:])
