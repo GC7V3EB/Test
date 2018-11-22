@@ -1,8 +1,10 @@
 import os
+import bcrypt
 import git
 import datetime as dt
 import uuid
 import random
+
 
 def createHeader():
     chars = list(x for x in range(ord('A'), ord('Z') + 1))
@@ -12,9 +14,8 @@ def createHeader():
     for c in chars:
         header += chr(c) + '|'
 
-    header += '--'
     header += os.linesep
-    header += '--|'
+    header += '|'
 
     for i in range(0, len(chars) + 1):
         header += ':-------:|'
@@ -23,9 +24,27 @@ def createHeader():
 
 
 def createContent():
-    width, height = 1 + ord('Z') - ord('A'), 26
+    width, height = 26, 26
 
-    return list([random.randint(0, 9) for y in range(width)] for x in range(height))
+    #  0 ...  9  A ...  Z
+    # 48 ... 57 65 ... 90
+
+    result = [[random.randint(48, 83) for x in range(width)] for y in range(height)]
+    result = list([y + 7 if y > 57 else y for y in x] for x in result)
+
+    return result
+
+
+def add_to_content(content, numbers):
+    line = os.linesep
+    for idx, j in enumerate(numbers):
+        line += '|{0:0>3}|'.format(idx + 1)
+        line += '|'.join([chr(x) for x in j])
+        line += '|'
+
+        content += line
+        line = os.linesep
+    return content
 
 
 def run():
@@ -38,7 +57,7 @@ def run():
 
     previousNumber, newNumber = None, None
 
-    for i in range(0, 10):
+    for i in range(0, 1):
         changeLine = random.randint(0, len(numbers))
         changeColumn = random.randint(0, len(numbers[changeLine]))
 
@@ -67,18 +86,6 @@ def run():
 
         previousNumber = numbers[changeLine][changeColumn]
         newNumber = numbers[changeLine][changeColumn] = random.randint(0, 9)
-
-
-def add_to_content(content, numbers):
-    line = os.linesep
-    for idx, j in enumerate(numbers):
-        line += '|{0:0>3}|'.format(idx + 1)
-        line += '|'.join([str(x) for x in j])
-        line += '|'
-
-        content += line
-        line = os.linesep
-    return content
 
 
 if __name__ == '__main__':
